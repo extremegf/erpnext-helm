@@ -33,6 +33,13 @@ spec:
         volumeMounts:
           - name: assets-cache
             mountPath: /home/frappe/frappe-bench/sites/assets
+      nodeSelector:
+          cloud.google.com/gke-spot: "true"
+      tolerations:
+      - key: cloud.google.com/gke-spot
+        operator: Equal
+        value: "true"
+        effect: NoSchedule
       containers:
       - name: migrate
         image: "{{ .Values.worker.image.repository }}:{{ .Values.worker.image.tag }}"

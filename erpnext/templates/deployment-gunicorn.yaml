@@ -45,6 +45,13 @@ spec:
       {{- if .Values.worker.gunicorn.initContainers }}
         {{- toYaml .Values.worker.gunicorn.initContainers | nindent 8 }}
       {{- end }}
+      nodeSelector:
+          cloud.google.com/gke-spot: "true"
+      tolerations:
+      - key: cloud.google.com/gke-spot
+        operator: Equal
+        value: "true"
+        effect: NoSchedule
       containers:
         - name: gunicorn
           {{- if .Values.worker.gunicorn.envVars }}

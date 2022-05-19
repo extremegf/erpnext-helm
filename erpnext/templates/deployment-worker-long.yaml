@@ -27,6 +27,13 @@ spec:
       initContainers:
         {{- toYaml .Values.worker.long.initContainers | nindent 8 }}
     {{- end }}
+      nodeSelector:
+          cloud.google.com/gke-spot: "true"
+      tolerations:
+      - key: cloud.google.com/gke-spot
+        operator: Equal
+        value: "true"
+        effect: NoSchedule
       containers:
         - name: long
           {{- if .Values.worker.long.envVars }}

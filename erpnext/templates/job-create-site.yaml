@@ -59,6 +59,13 @@ spec:
           volumeMounts:
             - name: sites-dir
               mountPath: /home/frappe/frappe-bench/sites
+      nodeSelector:
+          cloud.google.com/gke-spot: "true"
+      tolerations:
+      - key: cloud.google.com/gke-spot
+        operator: Equal
+        value: "true"
+        effect: NoSchedule
       containers:
       - name: create-site
         image: "{{ .Values.worker.image.repository }}:{{ .Values.worker.image.tag }}"

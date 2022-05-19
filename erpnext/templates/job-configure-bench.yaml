@@ -38,6 +38,13 @@ spec:
       {{- end }}
       securityContext:
         {{- toYaml $.Values.podSecurityContext | nindent 8 }}
+      nodeSelector:
+          cloud.google.com/gke-spot: "true"
+      tolerations:
+      - key: cloud.google.com/gke-spot
+        operator: Equal
+        value: "true"
+        effect: NoSchedule
       containers:
       - name: configure
         image: "{{ .Values.worker.image.repository }}:{{ .Values.worker.image.tag }}"

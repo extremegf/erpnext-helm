@@ -16,6 +16,13 @@ spec:
       serviceAccountName: {{ template "erpnext.serviceAccountName" $ }}
       securityContext:
         {{- toYaml $.Values.podSecurityContext | nindent 8 }}
+      nodeSelector:
+          cloud.google.com/gke-spot: "true"
+      tolerations:
+      - key: cloud.google.com/gke-spot
+        operator: Equal
+        value: "true"
+        effect: NoSchedule
       containers:
       - name: backup
         image: "{{ .Values.worker.image.repository }}:{{ .Values.worker.image.tag }}"
