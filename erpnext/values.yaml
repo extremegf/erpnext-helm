@@ -347,6 +347,13 @@ redis-cache:
       redis: 6379
     persistence:
       enabled: false
+    tolerations:
+    - key: cloud.google.com/gke-spot
+      operator: Equal
+      value: "true"
+      effect: NoSchedule
+    nodeSelector:
+      cloud.google.com/gke-spot: "true"
 
 redis-queue:
   # https://github.com/bitnami/charts/tree/master/bitnami/redis
@@ -361,6 +368,13 @@ redis-queue:
       redis: 6379
     persistence:
       enabled: false
+    tolerations:
+    - key: cloud.google.com/gke-spot
+      operator: Equal
+      value: "true"
+      effect: NoSchedule
+    nodeSelector:
+      cloud.google.com/gke-spot: "true"
 
 redis-socketio:
   # https://github.com/bitnami/charts/tree/master/bitnami/redis
@@ -375,6 +389,13 @@ redis-socketio:
       redis: 6379
     persistence:
       enabled: false
+    tolerations:
+    - key: cloud.google.com/gke-spot
+      operator: Equal
+      value: "true"
+      effect: NoSchedule
+    nodeSelector:
+      cloud.google.com/gke-spot: "true"
 
 mariadb:
   # https://github.com/bitnami/charts/tree/master/bitnami/mariadb
@@ -388,6 +409,13 @@ mariadb:
     service:
       ports:
         mysql: 3306
+    tolerations:
+    - key: cloud.google.com/gke-spot
+      operator: Equal
+      value: "true"
+      effect: NoSchedule
+    nodeSelector:
+      cloud.google.com/gke-spot: "true"
     configuration: |-
       [mysqld]
       skip-name-resolve
