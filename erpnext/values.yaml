@@ -219,14 +219,14 @@ socketio:
 persistence:
   worker:
     enabled: true
-    # existingClaim: ""
-    size: 8Gi
+    existingClaim: "erpnext-sites-pvc"
+    # size: 8Gi
     # storageClass: "nfs"
   logs:
     # Container based log search and analytics stack recommended
     enabled: false
     # existingClaim: ""
-    size: 8Gi
+    # size: 8Gi
     # storageClass: "nfs"
 
 # Ingress
