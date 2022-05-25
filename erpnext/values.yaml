@@ -406,6 +406,9 @@ mariadb:
     password: "changeit"
     replicationPassword: "changeit"
   primary:
+    persistence:
+      existingClaim: "erpnext-mariadb-pvc"
+      subPath: "mariadb"
     service:
       ports:
         mysql: 3306
